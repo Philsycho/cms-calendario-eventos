@@ -15,7 +15,25 @@ export const eventos = [
       descricao: "Conheça novas startups e participe de palestras incríveis.",
       data: "2025-06-02",
       local: "Expo Center Norte, São Paulo - SP",
-      imagem: "/img/show-musical.jpeg",
+      imagem: "/img/pinkfloyd.webp",
+    },
+    {
+      id: 3,
+      titulo: "Ferroz",
+      slug: "ferroz-",
+      descricao: "Festa tradicional de Agronômica.",
+      data: "2025-06-02",
+      local: "Pavilhão da Ferroz, Agronômica- SC",
+      imagem: "/img/recicla-agrn.png",
+    },
+    {
+      id: 4,
+      titulo: "Ferroz",
+      slug: "ferroz-",
+      descricao: "Festa tradicional de Agronômica.",
+      data: "2025-06-02",
+      local: "Pavilhão da Ferroz, Agronômica- SC",
+      imagem: "/img/standup.jpg",
     },
     // mais eventos...
   ];

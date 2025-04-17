@@ -4,7 +4,8 @@ import { eventos } from "../app/data/eventos";
 
 export default function ListaEventos() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 pb-8">
+    //<div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4 pb-8">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4 pb-8 px-[5%]">
       {eventos.map((evento) => (
         <Link
           key={evento.id}

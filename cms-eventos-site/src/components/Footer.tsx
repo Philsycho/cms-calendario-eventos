@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-      <footer className="bg-gray-100 text-sm mt-10 py-6 px-4">
+      <footer className="bg-black text-sm mt-10 py-6 px-[5%]">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <h4 className="font-semibold mb-2">Mapa do Site</h4>
