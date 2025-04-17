@@ -1,5 +1,7 @@
 import { eventos } from "../../data/eventos";
 import { notFound } from "next/navigation";
+//Aqui está a importação do navbar
+import NavBar from "../../../components/Navbar";
 
 interface Props {
   params: { slug: string };

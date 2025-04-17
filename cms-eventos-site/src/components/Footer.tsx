@@ -5,7 +5,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-2">Mapa do Site</h4>
             <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="">Home</a></li>
               <li><a href="#">Eventos</a></li>
               <li><a href="#">Contato</a></li>
             </ul>

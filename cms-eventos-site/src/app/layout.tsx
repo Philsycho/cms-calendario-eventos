@@ -1,3 +1,7 @@
+// src/app/layout.tsx
+import { ReactNode } from "react";
+import NavBar from "../components/Navbar"; // Caminho do seu NavBar
+import Footer from "../components/Footer"; // Caminho do seu Footer
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,7 +31,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NavBar /> {/* Adicionando o NavBar aqui */}
+        <div className="min-h-screen">{children}</div> {/* Conteúdo da página */}
+        <Footer /> {/* Adicionando o Footer aqui */}
       </body>
     </html>
   );
