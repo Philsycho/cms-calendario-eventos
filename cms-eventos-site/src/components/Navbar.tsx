@@ -1,6 +1,6 @@
 export default function Navbar() {
     return (
-      <header className="flex justify-between items-center px-6 py-4 bg-black shadow-md px-[5%]">
+      <header className="flex text-white justify-between items-center px-6 py-4 bg-black shadow-md px-[5%]">
         <nav className="flex gap-6 text-sm font-medium ">
           <a href="#">Home</a>
           <a href="#">Eventos</a>

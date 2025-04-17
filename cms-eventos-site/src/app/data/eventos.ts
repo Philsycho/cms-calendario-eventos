@@ -5,7 +5,7 @@ export const eventos = [
       slug: "festival-musica-urbana",
       descricao: "Um evento imperdível com bandas de todo o Brasil.",
       data: "2025-05-12",
-      local: "Parque Municipal, Belo Horizonte - MG",
+      localizacao: "Parque Municipal, Belo Horizonte - MG",
       imagem: "/img/negocio.jpg",
     },
     {
@@ -14,7 +14,7 @@ export const eventos = [
       slug: "feira-negocios-empreendedorismo",
       descricao: "Conheça novas startups e participe de palestras incríveis.",
       data: "2025-06-02",
-      local: "Expo Center Norte, São Paulo - SP",
+      localizacao: "Expo Center Norte, São Paulo - SP",
       imagem: "/img/pinkfloyd.webp",
     },
     {
@@ -23,7 +23,7 @@ export const eventos = [
       slug: "ferroz-",
       descricao: "Festa tradicional de Agronômica.",
       data: "2025-06-02",
-      local: "Pavilhão da Ferroz, Agronômica- SC",
+      localizacao: "Pavilhão da Ferroz, Agronômica- SC",
       imagem: "/img/recicla-agrn.png",
     },
     {
@@ -32,7 +32,7 @@ export const eventos = [
       slug: "ferroz-",
       descricao: "Festa tradicional de Agronômica.",
       data: "2025-06-02",
-      local: "Pavilhão da Ferroz, Agronômica- SC",
+      localizacao: "Pavilhão da Ferroz, Agronômica- SC",
       imagem: "/img/standup.jpg",
     },
     // mais eventos...
