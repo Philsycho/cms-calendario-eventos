@@ -9,7 +9,9 @@ export default function Navbar() {
         <a href="/">
           Home
         </a>
-        <a href="#">Eventos</a>
+        <a href="#">
+          Eventos
+        </a>
         <a href="#">Comunidade</a>
         <a href="#">Sobre</a>
         <a href="#">Contato</a>
