@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+  Controle dos indicadores (pontinhos) de baixo da imagem do banner
+*/
+.carousel .control-dots {
+  bottom: 50px !important; /* Move os pontos mais pra baixo */
+}
+
+.carousel .legend {
+  background: rgba(0, 0, 0, 0.4) !important; /* 0.4 = 40% opacidade */
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+}

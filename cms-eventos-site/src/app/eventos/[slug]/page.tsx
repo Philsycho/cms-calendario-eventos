@@ -1,13 +1,29 @@
-import { eventos } from "../../data/eventos";
+import fs from "fs";
+import path from "path";
 import { notFound } from "next/navigation";
-//Aqui está a importação do navbar
-import NavBar from "../../../components/Navbar";
 
 interface Props {
   params: { slug: string };
 }
 
-export default function PaginaEvento({ params }: Props) {
+interface Evento {
+  id: string;
+  titulo: string;
+  descricao: string;
+  imagem: string;
+  localizacao: string;
+  data: string;
+  slug: string;
+}
+
+export default async function PaginaEvento({ params }: Props) {
+  // Caminho do arquivo JSON
+  const filePath = path.join(process.cwd(), "src", "app", "data", "eventos.json");
+
+  // Leitura síncrona porque estamos no lado do servidor
+  const data = fs.readFileSync(filePath, "utf-8");
+  const eventos: Evento[] = JSON.parse(data);
+
   const evento = eventos.find((e) => e.slug === params.slug);
 
   if (!evento) {

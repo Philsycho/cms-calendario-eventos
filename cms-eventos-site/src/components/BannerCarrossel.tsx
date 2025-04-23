@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -8,17 +9,18 @@ type Evento = {
   titulo: string;
   imagem: string;
   data: string;
+  slug: string;
 };
 
 export default function BannerCarrossel() {
   const [eventos, setEventos] = useState<Evento[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     fetch("/api/eventos")
       .then((res) => res.json())
       .then((dados: Evento[]) => {
         const eventosOrdenados = dados
-          // Sort vai fucnionar como evento mais próximo da data.
           .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
           .slice(0, 4);
         setEventos(eventosOrdenados);
@@ -40,11 +42,22 @@ export default function BannerCarrossel() {
       >
         {eventos.map((evento) => (
           <div key={evento.id}>
-            <img
-              src={evento.imagem}
-              alt={evento.titulo}
-              className="h-[400px] w-full object-cover"
-            />
+            <div
+              onClick={() => router.push(`/eventos/${evento.slug}`)}
+              className="cursor-pointer h-[400px] w-full"
+              style={{ position: "relative" }}
+            >
+              <img
+                src={evento.imagem}
+                alt={evento.titulo}
+                className="h-full w-full object-cover"
+              />
+              <div
+                className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-4 text-lg font-semibold"
+              >
+                {evento.titulo}
+              </div>
+            </div>
           </div>
         ))}
       </Carousel>
