@@ -1,14 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
+import { writeFile } from 'fs/promises';
+import { v4 as uuidv4 } from 'uuid';
 
 const USERNAME = 'admin';
 const PASSWORD = '1234';
-
-/*export async function GET(req: Request){
-  const authHeader = req.headers.get('authorization');
-
-}*/
 
 export async function GET() {
   try {
@@ -40,17 +37,47 @@ export async function POST(req: Request) {
 
   try {
     const formData = await req.formData();
-    const evento = JSON.parse(formData.get('evento') as string);
+    const eventoStr = formData.get("evento") as string;
+    const imagem = formData.get("imagem") as File | null;
 
-    const eventosFilePath = path.join(process.cwd(), 'src/app/data/eventos.ts');
+    const evento = JSON.parse(eventoStr);
 
-    const eventosFile = fs.readFileSync(eventosFilePath, 'utf-8');
-    let eventos = eval(eventosFile.replace('export const eventos = ', ''));
+    const eventosFilePath = path.join(process.cwd(), 'src/app/data/eventos.json');
+    const eventosData = fs.readFileSync(eventosFilePath, 'utf-8');
+    const eventos = JSON.parse(eventosData);
 
-    eventos.push(evento);
+    const novoId = eventos.length > 0 ? eventos[eventos.length - 1].id + 1 : 1;
+    const slug = evento.titulo
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '');
 
-    const eventosData = `export const eventos = ${JSON.stringify(eventos, null, 2)};`;
-    fs.writeFileSync(eventosFilePath, eventosData);
+    const imgDir = path.join(process.cwd(), 'public', 'img');
+    if (!fs.existsSync(imgDir)) {
+      fs.mkdirSync(imgDir, { recursive: true });
+    }
+
+    let imagemPath = '';
+    if (imagem) {
+      const buffer = Buffer.from(await imagem.arrayBuffer());
+      const nomeArquivo = `${uuidv4()}_${imagem.name}`;
+      const filePath = path.join(imgDir, nomeArquivo);
+      await writeFile(filePath, buffer);
+      imagemPath = `/img/${nomeArquivo}`;
+    }
+
+    const novoEvento = {
+      id: novoId,
+      titulo: evento.titulo,
+      slug,
+      descricao: evento.descricao,
+      data: evento.data,
+      localizacao: evento.localizacao,
+      imagem: imagemPath,
+    };
+
+    eventos.push(novoEvento);
+    fs.writeFileSync(eventosFilePath, JSON.stringify(eventos, null, 2), 'utf-8');
 
     return NextResponse.json({ message: 'Evento criado com sucesso!' }, { status: 200 });
 
@@ -59,5 +86,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Erro ao criar o evento.' }, { status: 500 });
   }
 }
-
-console.log("Credenciais recebidas:", USERNAME, PASSWORD);

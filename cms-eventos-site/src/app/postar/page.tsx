@@ -34,6 +34,9 @@ export default function Postar() {
 
     const response = await fetch('/api/eventos', {
       method: 'POST',
+      headers: {
+        Authorization: 'Basic ' + btoa('admin:1234'),
+      },
       body: formData,
     });
 
