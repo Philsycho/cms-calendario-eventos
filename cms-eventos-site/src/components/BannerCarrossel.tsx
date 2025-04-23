@@ -8,7 +8,8 @@ type Evento = {
   id: string;
   titulo: string;
   imagem: string;
-  data: string;
+  data_evento: string;
+  data_postagem: string;
   slug: string;
 };
 
@@ -16,16 +17,23 @@ export default function BannerCarrossel() {
   const [eventos, setEventos] = useState<Evento[]>([]);
   const router = useRouter();
 
+
   useEffect(() => {
     fetch("/api/eventos")
       .then((res) => res.json())
       .then((dados: Evento[]) => {
         const eventosOrdenados = dados
-          .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
+          .sort((a, b) => new Date(b.data_postagem).getTime() - new Date(a.data_evento).getTime())
           .slice(0, 4);
         setEventos(eventosOrdenados);
+        dados.forEach((evento) => {
+          console.log(`Evento: ${evento.titulo}`);
+          console.log(`Data do Evento: ${evento.data_evento}`);
+          console.log(`Data da Postagem: ${evento.data_postagem}`);
+        });
       })
       .catch((err) => console.error("Erro ao carregar eventos:", err));
+      
   }, []);
 
   return (

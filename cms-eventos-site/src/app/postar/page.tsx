@@ -6,7 +6,7 @@ export default function Postar() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [localizacao, setLocalizacao] = useState('');
-  const [data, setData] = useState('');
+  const [data_evento, setData] = useState('');
   const [imagem, setImagem] = useState<File | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ export default function Postar() {
       titulo,
       descricao,
       localizacao,
-      data,
+      data_evento,
       imagem: imagem?.name || ''
     };
 
@@ -91,7 +91,7 @@ export default function Postar() {
           <input
             type="date"
             id="data"
-            value={data}
+            value={data_evento}
             onChange={(e) => setData(e.target.value)}
             className="w-full px-4 py-2 border rounded"
             required

@@ -10,8 +10,8 @@ const PASSWORD = '1234';
 export async function GET() {
   try {
     const eventosFilePath = path.join(process.cwd(), 'src/app/data/eventos.json');
-    const data = fs.readFileSync(eventosFilePath, 'utf-8');
-    const eventos = JSON.parse(data);
+    const data_evento = fs.readFileSync(eventosFilePath, 'utf-8');
+    const eventos = JSON.parse(data_evento);
 
     return NextResponse.json(eventos);
   } catch (error) {
@@ -47,10 +47,22 @@ export async function POST(req: Request) {
     const eventos = JSON.parse(eventosData);
 
     const novoId = eventos.length > 0 ? eventos[eventos.length - 1].id + 1 : 1;
+
     const slug = evento.titulo
       .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]+/g, '');
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-');
+
+    // Gera a data atual no fuso de Brasília no formato YYYY-MM-DD
+    const now = new Date();
+    const formatter = new Intl.DateTimeFormat("sv-SE", {
+      timeZone: "America/Sao_Paulo",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    const parts = formatter.formatToParts(now);
+    const dataBrasilia = `${parts.find(p => p.type === 'year')?.value}-${parts.find(p => p.type === 'month')?.value}-${parts.find(p => p.type === 'day')?.value}`;
 
     const imgDir = path.join(process.cwd(), 'public', 'img');
     if (!fs.existsSync(imgDir)) {
@@ -71,7 +83,8 @@ export async function POST(req: Request) {
       titulo: evento.titulo,
       slug,
       descricao: evento.descricao,
-      data: evento.data,
+      data_evento: evento.data_evento,
+      data_postagem: dataBrasilia,
       localizacao: evento.localizacao,
       imagem: imagemPath,
     };

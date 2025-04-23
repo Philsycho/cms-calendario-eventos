@@ -10,7 +10,8 @@ type Evento = {
   titulo: string;
   descricao: string;
   imagem: string;
-  data: string;
+  data_evento: string;
+  data_postagem: string;
   local: string;
 };
 
@@ -20,12 +21,20 @@ export default function ListaEventos() {
   useEffect(() => {
     fetch("/api/eventos")
       .then((res) => res.json())
-      .then((data) => setEventos(data))
+      .then((data) => {
+        const eventosOrdenados = data
+          .sort(
+            (a: Evento, b: Evento) =>
+              new Date(b.data_postagem).getTime() - new Date(a.data_postagem).getTime()
+          )
+          .slice(0, 6); // Pega apenas os 6 mais recentes
+        setEventos(eventosOrdenados);
+      })
       .catch((err) => console.error("Erro ao buscar eventos:", err));
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4 pb-8 px-[5%]">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 pb-8 px-[5%]">
       {eventos.map((evento) => (
         <Link
           key={evento.id}
@@ -43,7 +52,7 @@ export default function ListaEventos() {
           <div className="p-4">
             <h2 className="text-xl font-semibold">{evento.titulo}</h2>
             <p className="text-gray-500 text-sm">
-              {new Date(evento.data).toLocaleDateString()} • {evento.local}
+              {new Date(evento.data_evento).toLocaleDateString()} • {evento.local}
             </p>
             <p className="mt-2 text-gray-700">{evento.descricao}</p>
           </div>

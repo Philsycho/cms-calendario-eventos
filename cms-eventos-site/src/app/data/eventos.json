@@ -4,7 +4,8 @@
     "titulo": "Ferroz",
     "slug": "ferroz-",
     "descricao": "Festa tradicional de Agronômica.",
-    "data": "2025-06-02",
+    "data_evento": "2025-06-02 00:00:00:000",
+    "data_postagem": "2025-04-22 00:00:00:000",
     "localizacao": "Pavilhão da Ferroz, Agronômica- SC",
     "imagem": "/img/recicla-agrn.png"
   },
@@ -13,7 +14,8 @@
     "titulo": "Feira de Negócios e Empreendedorismo",
     "slug": "feira-negocios-empreendedorismo",
     "descricao": "Conheça novas startups e participe de palestras incríveis.",
-    "data": "2027-06-02",
+    "data_evento": "2027-06-02 00:00:00:000",
+    "data_postagem": "2025-04-22 00:00:00:000",
     "localizacao": "Expo Center Norte, São Paulo - SP",
     "imagem": "/img/pinkfloyd.webp"
   },
@@ -22,7 +24,8 @@
     "titulo": "Ferroz",
     "slug": "ferroz-",
     "descricao": "Festa tradicional de Agronômica.",
-    "data": "2025-06-02",
+    "data_evento": "2025-06-02 00:00:00:000",
+    "data_postagem": "2025-04-10 00:00:00:000",
     "localizacao": "Pavilhão da Ferroz, Agronômica- SC",
     "imagem": "/img/standup.jpg"
   },
@@ -31,7 +34,8 @@
     "titulo": "Festival de Música Urbana",
     "slug": "festival-musica-urbana",
     "descricao": "Um evento imperdível com bandas de todo o Brasil.",
-    "data": "2026-05-12",
+    "data_evento": "2026-05-12 00:00:00:000",
+    "data_postagem": "2025-04-05 00:00:00:000",
     "localizacao": "Parque Municipal, Belo Horizonte - MG",
     "imagem": "/img/negocio.jpg"
   },
@@ -40,8 +44,29 @@
     "titulo": "Teste de postagem",
     "slug": "teste-de-postagem",
     "descricao": "Teste de postagem ",
-    "data": "2025-10-15",
+    "data_evento": "2025-10-15 00:00:00:000",
+    "data_postagem": "2025-03-30 00:00:00:000",
     "localizacao": "Aqui Pertinho - SP",
     "imagem": "/img/925d943b-396c-4076-8c62-68c8284dfb38_Grafos.PNG"
+  },
+  {
+    "id": 6,
+    "titulo": "Comprar máquinas agricolas",
+    "slug": "comprar-mquinas-agricolas",
+    "descricao": "Uma oportunidade única",
+    "data_evento": "2025-04-23 00:00:00:000",
+    "data_postagem": "2025-04-23 00:00:00:000",
+    "localizacao": "Centro, Tubarão - SC",
+    "imagem": "/img/3a248962-d78d-4611-aeac-28a17077ce7d_Maquinaria-Agricola--1-.png"
+  },
+  {
+    "id": 7,
+    "titulo": "Feira de robotica",
+    "slug": "feira-de-robotica",
+    "descricao": "Evento do futuro",
+    "data_evento": "2025-04-30 00:00:00:000",
+    "data_postagem": "2025-04-23 01:00:00:000",
+    "localizacao": "Centro, Tubarão - SC",
+    "imagem": "/img/fa9ed422-ff13-45a2-83ed-7340cd3bcc58_R.png"
   }
 ]
