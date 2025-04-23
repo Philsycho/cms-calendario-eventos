@@ -2,39 +2,62 @@ import fs from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
+const USERNAME = 'admin';
+const PASSWORD = '1234';
 
+/*export async function GET(req: Request){
+  const authHeader = req.headers.get('authorization');
+
+}*/
+
+export async function GET() {
+  try {
+    const eventosFilePath = path.join(process.cwd(), 'src/app/data/eventos.json');
+    const data = fs.readFileSync(eventosFilePath, 'utf-8');
+    const eventos = JSON.parse(data);
+
+    return NextResponse.json(eventos);
+  } catch (error) {
+    console.error("Erro ao ler o arquivo de eventos:", error);
+    return NextResponse.json({ error: "Erro ao ler os eventos." }, { status: 500 });
+  }
+}
+
+export async function POST(req: Request) {
+  const authHeader = req.headers.get('authorization');
+
+  if (!authHeader || !authHeader.startsWith('Basic ')) {
+    return new NextResponse('Unauthorized', { status: 401 });
+  }
+
+  const base64Credentials = authHeader.split(' ')[1];
+  const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8').split(':');
+  const [user, pass] = credentials;
+
+  if (user !== USERNAME || pass !== PASSWORD) {
+    return new NextResponse('Unauthorized', { status: 401 });
+  }
+
+  try {
     const formData = await req.formData();
     const evento = JSON.parse(formData.get('evento') as string);
-    //const imagem = formData.get('imagem') as File;
 
-    // Caminho correto para o arquivo de eventos
     const eventosFilePath = path.join(process.cwd(), 'src/app/data/eventos.ts');
 
-    // Salvar a imagem na pasta public/img
-    
-    //const imagemPath = path.join(process.cwd(), 'public/img', imagem.name);
-    //const buffer = Buffer.from(await imagem.arrayBuffer());
-    //fs.writeFileSync(imagemPath, buffer);
+    const eventosFile = fs.readFileSync(eventosFilePath, 'utf-8');
+    let eventos = eval(eventosFile.replace('export const eventos = ', ''));
 
-    // Ler o arquivo eventos.ts e adicionar o novo evento
-    let eventos = [];
-      const eventosFile = fs.readFileSync(eventosFilePath, 'utf-8');
-      eventos = eval(eventosFile.replace('export const eventos = ', ''));
-
-      console.error('Erro ao ler o arquivo eventos.ts');
-      return NextResponse.json({ error: 'Erro ao ler o arquivo de eventos.' }, { status: 500 });
-
-
-    // Adiciona o novo evento
     eventos.push(evento);
 
-    // Escrever os novos dados de volta no arquivo
     const eventosData = `export const eventos = ${JSON.stringify(eventos, null, 2)};`;
     fs.writeFileSync(eventosFilePath, eventosData);
 
-    //return NextResponse.json({ message: 'Evento criado com sucesso!' }, { status: 200 });
+    return NextResponse.json({ message: 'Evento criado com sucesso!' }, { status: 200 });
 
-    console.error('Erro ao processar o evento:');
+  } catch (error) {
+    console.error('Erro ao processar o evento:', error);
     return NextResponse.json({ error: 'Erro ao criar o evento.' }, { status: 500 });
+  }
 }
+
+console.log("Credenciais recebidas:", USERNAME, PASSWORD);

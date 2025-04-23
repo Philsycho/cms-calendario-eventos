@@ -1,10 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { eventos } from "../app/data/eventos";
+import { useEffect, useState } from "react";
+
+type Evento = {
+  id: string;
+  slug: string;
+  titulo: string;
+  descricao: string;
+  imagem: string;
+  data: string;
+  local: string;
+};
 
 export default function ListaEventos() {
+  const [eventos, setEventos] = useState<Evento[]>([]);
+
+  useEffect(() => {
+    fetch("/api/eventos")
+      .then((res) => res.json())
+      .then((data) => setEventos(data))
+      .catch((err) => console.error("Erro ao buscar eventos:", err));
+  }, []);
+
   return (
-    //<div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4 pb-8">
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4 pb-8 px-[5%]">
       {eventos.map((evento) => (
         <Link
