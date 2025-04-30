@@ -1,13 +1,22 @@
-// src/app/postar/page.tsx
 'use client';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 
 export default function Postar() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [localizacao, setLocalizacao] = useState('');
-  const [data_evento, setData] = useState('');
+  const [data_evento, setDataEvento] = useState('');
+  const [categoria, setCategoria] = useState('');
+  const [subcategoria, setSubcategoria] = useState('');
   const [imagem, setImagem] = useState<File | null>(null);
+  const [categorias, setCategorias] = useState<{ id_categoria: number; desc_categoria: string }[]>([]);
+  const [subcategorias, setSubcategorias] = useState<{ id_subcategoria: number; id_categoria: number; desc_subcategoria: string }[]>([]);
+
+  useEffect(() => {
+    fetch('/api/categoria').then(res => res.json()).then(setCategorias);
+    fetch('/api/sub_categoria').then(res => res.json()).then(setSubcategorias);
+  }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -15,19 +24,38 @@ export default function Postar() {
     }
   };
 
+  const gerarSlug = (titulo: string) => {
+    return titulo.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  };
+
+  const formatarDataCompleta = (data: string) => {
+    const date = new Date(data);
+    return date.toISOString();
+  };
+
+  const getDataPostagem = () => {
+    const date = new Date();
+    return date.toISOString();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Criando o evento com os dados do formulário
+
+    const slug = gerarSlug(titulo);
+    const data_postagem = getDataPostagem();
+
     const evento = {
       titulo,
+      slug,
       descricao,
       localizacao,
-      data_evento,
+      data_evento: formatarDataCompleta(data_evento),
+      data_postagem,
+      categoria: parseInt(categoria),
+      subcategoria: parseInt(subcategoria),
       imagem: imagem?.name || ''
     };
 
-    // Enviar os dados do evento para o backend para salvar
     const formData = new FormData();
     formData.append('evento', JSON.stringify(evento));
     if (imagem) formData.append('imagem', imagem);
@@ -87,15 +115,52 @@ export default function Postar() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="data" className="block text-sm font-medium">Data</label>
+          <label htmlFor="data_evento" className="block text-sm font-medium">Data e Hora do Evento</label>
           <input
-            type="date"
-            id="data"
+            type="datetime-local"
+            id="data_evento"
             value={data_evento}
-            onChange={(e) => setData(e.target.value)}
+            onChange={(e) => setDataEvento(e.target.value)}
             className="w-full px-4 py-2 border rounded"
             required
           />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="categoria" className="block text-sm font-medium">Categoria</label>
+          <select
+            id="categoria"
+            value={categoria}
+            onChange={(e) => {
+              setCategoria(e.target.value);
+              setSubcategoria('');
+            }}
+            className="w-full px-4 py-2 border rounded"
+            required
+          >
+            <option value="">Selecione uma categoria</option>
+            {categorias.map(cat => (
+              <option key={cat.id_categoria} value={cat.id_categoria}>{cat.desc_categoria}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="subcategoria" className="block text-sm font-medium">Subcategoria</label>
+          <select
+            id="subcategoria"
+            value={subcategoria}
+            onChange={(e) => setSubcategoria(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+            required
+          >
+            <option value="">Selecione uma subcategoria</option>
+            {subcategorias
+              .filter(sub => sub.id_categoria === parseInt(categoria))
+              .map(sub => (
+                <option key={sub.id_subcategoria} value={sub.id_subcategoria}>{sub.desc_subcategoria}</option>
+              ))}
+          </select>
         </div>
 
         <div className="mb-4">
@@ -105,6 +170,7 @@ export default function Postar() {
             id="imagem"
             onChange={handleImageChange}
             className="w-full px-4 py-2 border rounded"
+            required
           />
         </div>
 

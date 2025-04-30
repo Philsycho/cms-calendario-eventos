@@ -6,6 +6,8 @@
     "descricao": "Festa tradicional de Agronômica.",
     "data_evento": "2025-06-02 00:00:00:000",
     "data_postagem": "2025-04-22 00:00:00:000",
+    "categoria": "",
+    "sub-categoria": "",
     "localizacao": "Pavilhão da Ferroz, Agronômica- SC",
     "imagem": "/img/recicla-agrn.png"
   },
@@ -14,8 +16,10 @@
     "titulo": "Feira de Negócios e Empreendedorismo",
     "slug": "feira-negocios-empreendedorismo",
     "descricao": "Conheça novas startups e participe de palestras incríveis.",
-    "data_evento": "2027-06-02 00:00:00:000",
+    "data_evento": "2027-06-02 17:00:00:000",
     "data_postagem": "2025-04-22 00:00:00:000",
+    "categoria": 1,
+    "sub-categoria": "",
     "localizacao": "Expo Center Norte, São Paulo - SP",
     "imagem": "/img/pinkfloyd.webp"
   },
@@ -26,6 +30,8 @@
     "descricao": "Festa tradicional de Agronômica.",
     "data_evento": "2025-06-02 00:00:00:000",
     "data_postagem": "2025-04-10 00:00:00:000",
+    "categoria": "",
+    "sub-categoria": "",
     "localizacao": "Pavilhão da Ferroz, Agronômica- SC",
     "imagem": "/img/standup.jpg"
   },
@@ -36,6 +42,8 @@
     "descricao": "Um evento imperdível com bandas de todo o Brasil.",
     "data_evento": "2026-05-12 00:00:00:000",
     "data_postagem": "2025-04-05 00:00:00:000",
+    "categoria": "",
+    "sub-categoria": "",
     "localizacao": "Parque Municipal, Belo Horizonte - MG",
     "imagem": "/img/negocio.jpg"
   },
@@ -44,8 +52,10 @@
     "titulo": "Teste de postagem",
     "slug": "teste-de-postagem",
     "descricao": "Teste de postagem ",
-    "data_evento": "2025-10-15 00:00:00:000",
-    "data_postagem": "2025-03-30 00:00:00:000",
+    "data_evento": "2025-11-15 00:00:00:000",
+    "data_postagem": "2025-04-23 00:00:00:000",
+    "categoria": "",
+    "sub-categoria": "",
     "localizacao": "Aqui Pertinho - SP",
     "imagem": "/img/925d943b-396c-4076-8c62-68c8284dfb38_Grafos.PNG"
   },
@@ -56,6 +66,8 @@
     "descricao": "Uma oportunidade única",
     "data_evento": "2025-04-23 00:00:00:000",
     "data_postagem": "2025-04-23 00:00:00:000",
+    "categoria": "",
+    "sub-categoria": "",
     "localizacao": "Centro, Tubarão - SC",
     "imagem": "/img/3a248962-d78d-4611-aeac-28a17077ce7d_Maquinaria-Agricola--1-.png"
   },
@@ -66,7 +78,19 @@
     "descricao": "Evento do futuro",
     "data_evento": "2025-04-30 00:00:00:000",
     "data_postagem": "2025-04-23 01:00:00:000",
+    "categoria": "",
+    "sub-categoria": "",
     "localizacao": "Centro, Tubarão - SC",
     "imagem": "/img/fa9ed422-ff13-45a2-83ed-7340cd3bcc58_R.png"
+  },
+  {
+    "id": 8,
+    "titulo": "Teste de categoria e subcategoria",
+    "slug": "teste-de-categoria-e-subcategoria",
+    "descricao": "Esse é um evento comum de teste.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat eget dui nec lobortis. Proin ut leo in ex bibendum consectetur. In dapibus est in dui eleifend egestas. Aliquam dui nulla, fringilla eu euismod eget, egestas in arcu. Duis auctor odio ut augue eleifend maximus. Nam vestibulum pretium ante, eu dictum dolor auctor sed. Vestibulum rutrum arcu lacus, eu porttitor augue facilisis in. Mauris sodales odio ex, vel hendrerit purus dapibus eu. Sed sit amet dui interdum, interdum sapien in, vulputate dolor. Quisque scelerisque, mi quis elementum faucibus, massa arcu dictum augue, quis tristique dui augue ac leo. Vestibulum rhoncus est dui. Fusce iaculis rhoncus est, nec fringilla velit maximus at. Vivamus viverra consequat velit, a vestibulum augue maximus non. Nullam et molestie urna. Cras purus justo, pellentesque at urna a, placerat dapibus tortor. Vivamus ornare eget lorem et interdum.",
+    "data_evento": "2025-10-22T22:00:00.000Z",
+    "data_postagem": "2025-04-23",
+    "localizacao": "Porto Alegre, Salto Grande - RJ",
+    "imagem": "/img/65ae0045-67fc-4d50-b6e4-506f6104d513_adm.jpg"
   }
 ]

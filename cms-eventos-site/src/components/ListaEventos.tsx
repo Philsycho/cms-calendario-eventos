@@ -34,7 +34,7 @@ export default function ListaEventos() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 pb-8 px-[5%]">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 pb-8 px-[8%]">
       {eventos.map((evento) => (
         <Link
           key={evento.id}
@@ -50,7 +50,7 @@ export default function ListaEventos() {
             />
           </div>
           <div className="p-4">
-            <h2 className="text-xl font-semibold">{evento.titulo}</h2>
+            <h2 className="text-xl text-black font-semibold">{evento.titulo}</h2>
             <p className="text-gray-500 text-sm">
               {new Date(evento.data_evento).toLocaleDateString()} • {evento.local}
             </p>

@@ -1,12 +1,12 @@
 export default function Footer() {
     return (
-      <footer className="bg-black text-white text-sm mt-10 py-6 px-[5%]">
+      <footer className="bg-black text-white text-sm mt-10 py-6 px-[8%]">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <h4 className="font-semibold mb-2">Mapa do Site</h4>
             <ul>
-              <li><a href="">Home</a></li>
-              <li><a href="#">Eventos</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/eventos">Eventos</a></li>
               <li><a href="#">Contato</a></li>
             </ul>
           </div>

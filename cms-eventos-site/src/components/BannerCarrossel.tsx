@@ -37,7 +37,7 @@ export default function BannerCarrossel() {
   }, []);
 
   return (
-    <div className="mt-4 h-[400px] overflow-hidden rounded-lg px-[5%]">
+    <div className="mt-4 h-[400px] overflow-hidden rounded-lg px-[8%]">
       <Carousel
         key={eventos.length}
         autoPlay

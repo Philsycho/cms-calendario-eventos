@@ -1,15 +1,12 @@
-// src/components/Navbar.tsx
-//import Link from 'next/link'; // Importe o Link do Next.js
-
 export default function Navbar() {
   return (
-    <header className="flex text-white justify-between items-center px-6 py-4 bg-black shadow-md px-[5%]">
+    <header className="flex text-white justify-between items-center px-6 py-4 bg-black shadow-md px-[8%]">
       <nav className="flex gap-6 text-sm font-medium">
         {/* Usando o Link do Next.js para a navegação */}
         <a href="/">
           Home
         </a>
-        <a href="#">
+        <a href="/eventos">
           Eventos
         </a>
         <a href="#">Comunidade</a>

@@ -1,0 +1,18 @@
+[
+    {
+        "id_categoria":1,
+        "desc_categoria":"Musica"
+    },
+    {
+        "id_categoria":2,
+        "desc_categoria":"Teatro"
+    },
+    {
+        "id_categoria":3,
+        "desc_categoria":"Workshop"
+    },
+    {
+        "id_categoria":4,
+        "desc_categoria":"Feira"
+    }
+]

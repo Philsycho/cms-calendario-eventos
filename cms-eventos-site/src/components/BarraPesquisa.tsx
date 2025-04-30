@@ -1,6 +1,6 @@
 export default function BarraPesquisa() {
     return (
-      <div className="mt-6 mb-4 px-4  px-[5%]">
+      <div className="mt-6 mb-4 px-4  px-[8%]">
         <input
           type="text"
           placeholder="Buscar eventos..."
