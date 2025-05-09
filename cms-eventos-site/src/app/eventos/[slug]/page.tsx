@@ -24,7 +24,7 @@ export default async function PaginaEvento({ params }: Props) {
   const data = fs.readFileSync(filePath, "utf-8");
   const eventos: Evento[] = JSON.parse(data);
 
-  const evento = eventos.find((e) => e.slug === params.slug);
+  const evento =  eventos.find((e) => e.slug === params.slug);
 
   if (!evento) {
     notFound();

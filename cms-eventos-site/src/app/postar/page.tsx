@@ -5,13 +5,27 @@ import { useEffect, useState } from 'react';
 export default function Postar() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [localizacao, setLocalizacao] = useState('');
+  const [descricao_curta, setDescricaoCurta] = useState('');
+  const [data_postagem, setDataPostagem] = useState('');
+  const [hora_postagem, setHoraPostagem] = useState('');
   const [data_evento, setDataEvento] = useState('');
+  const [hora_evento, setHoraEvento] = useState('');
+  const [hora_ini_evento, setHoraIniEvento] = useState('');
+  const [hora_fim_evento, setHoraFimEvento] = useState('');
+  const [localizacao, setLocalizacao] = useState('');
   const [categoria, setCategoria] = useState('');
-  const [subcategoria, setSubcategoria] = useState('');
-  const [imagem, setImagem] = useState<File | null>(null);
   const [categorias, setCategorias] = useState<{ id_categoria: number; desc_categoria: string }[]>([]);
   const [subcategorias, setSubcategorias] = useState<{ id_subcategoria: number; id_categoria: number; desc_subcategoria: string }[]>([]);
+  const [subcategoria, setSubcategoria] = useState('');
+  const [banner, setBanner] = useState<File | null>(null);
+  const [video, setVideo] = useState('');
+  const [publico, setPublico] = useState('');
+  const [faixa_etaria, setFaixaEtaria] = useState('');
+  const [vagas, setVagas] = useState('');
+  const [gratuito, setGratuito] = useState('');
+  const [valor, setValor] = useState('');
+  const [compra_link, setCompraLink] = useState('');
+  
 
   useEffect(() => {
     fetch('/api/categoria').then(res => res.json()).then(setCategorias);
@@ -48,17 +62,18 @@ export default function Postar() {
       titulo,
       slug,
       descricao,
+      descricao_curta,
       localizacao,
       data_evento: formatarDataCompleta(data_evento),
       data_postagem,
       categoria: parseInt(categoria),
       subcategoria: parseInt(subcategoria),
-      imagem: imagem?.name || ''
+      banner: banner?.name || ''
     };
 
     const formData = new FormData();
     formData.append('evento', JSON.stringify(evento));
-    if (imagem) formData.append('imagem', imagem);
+    if (banner) formData.append('banner', banner);
 
     const response = await fetch('/api/eventos', {
       method: 'POST',
@@ -77,7 +92,7 @@ export default function Postar() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h1 className="text-3xl font-bold mb-4">Criar Novo Evento</h1>
+      <h1 className="text-3xl font-bold mb-4">Criar Novo Evento</h1> 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="titulo" className="block text-sm font-medium">Título</label>
@@ -97,6 +112,17 @@ export default function Postar() {
             id="descricao"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="descricao_curta" className="block text-sm font-medium">Descrição</label>
+          <textarea
+            id="descricao_curta"
+            value={descricao_curta}
+            onChange={(e) => setDescricaoCurta(e.target.value)}
             className="w-full px-4 py-2 border rounded"
             required
           />
