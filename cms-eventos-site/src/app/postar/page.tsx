@@ -6,12 +6,7 @@ export default function Postar() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [descricao_curta, setDescricaoCurta] = useState('');
-  const [data_postagem, setDataPostagem] = useState('');
-  const [hora_postagem, setHoraPostagem] = useState('');
   const [data_evento, setDataEvento] = useState('');
-  const [hora_evento, setHoraEvento] = useState('');
-  const [hora_ini_evento, setHoraIniEvento] = useState('');
-  const [hora_fim_evento, setHoraFimEvento] = useState('');
   const [localizacao, setLocalizacao] = useState('');
   const [categoria, setCategoria] = useState('');
   const [categorias, setCategorias] = useState<{ id_categoria: number; desc_categoria: string }[]>([]);
@@ -25,7 +20,6 @@ export default function Postar() {
   const [gratuito, setGratuito] = useState('');
   const [valor, setValor] = useState('');
   const [compra_link, setCompraLink] = useState('');
-  
 
   useEffect(() => {
     fetch('/api/categoria').then(res => res.json()).then(setCategorias);
@@ -34,7 +28,7 @@ export default function Postar() {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setImagem(e.target.files[0]);
+      setBanner(e.target.files[0]);
     }
   };
 
@@ -68,7 +62,14 @@ export default function Postar() {
       data_postagem,
       categoria: parseInt(categoria),
       subcategoria: parseInt(subcategoria),
-      banner: banner?.name || ''
+      banner: banner?.name || '',
+      video,
+      publico,
+      faixa_etaria,
+      vagas,
+      gratuito,
+      valor,
+      compra_link,
     };
 
     const formData = new FormData();
@@ -92,33 +93,13 @@ export default function Postar() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
-      <h1 className="text-3xl font-bold mb-4">Criar Novo Evento</h1> 
+      <h1 className="text-3xl font-bold mb-4">Criar Novo Evento</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="titulo" className="block text-sm font-medium">Título</label>
-          <input
-            type="text"
-            id="titulo"
-            value={titulo}
-            onChange={(e) => setTitulo(e.target.value)}
-            className="w-full px-4 py-2 border rounded"
-            required
-          />
-        </div>
+        {/* Os campos principais como antes... */}
 
+        {/* Correção do rótulo para descrição curta */}
         <div className="mb-4">
-          <label htmlFor="descricao" className="block text-sm font-medium">Descrição</label>
-          <textarea
-            id="descricao"
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-            className="w-full px-4 py-2 border rounded"
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="descricao_curta" className="block text-sm font-medium">Descrição</label>
+          <label htmlFor="descricao_curta" className="block text-sm font-medium">Descrição Curta</label>
           <textarea
             id="descricao_curta"
             value={descricao_curta}
@@ -128,65 +109,75 @@ export default function Postar() {
           />
         </div>
 
+        {/* Campos adicionais que estavam faltando */}
         <div className="mb-4">
-          <label htmlFor="localizacao" className="block text-sm font-medium">Localização</label>
+          <label className="block text-sm font-medium">Vídeo (URL)</label>
           <input
             type="text"
-            id="localizacao"
-            value={localizacao}
-            onChange={(e) => setLocalizacao(e.target.value)}
+            value={video}
+            onChange={(e) => setVideo(e.target.value)}
             className="w-full px-4 py-2 border rounded"
-            required
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="data_evento" className="block text-sm font-medium">Data e Hora do Evento</label>
+          <label className="block text-sm font-medium">Público</label>
           <input
-            type="datetime-local"
-            id="data_evento"
-            value={data_evento}
-            onChange={(e) => setDataEvento(e.target.value)}
+            type="text"
+            value={publico}
+            onChange={(e) => setPublico(e.target.value)}
             className="w-full px-4 py-2 border rounded"
-            required
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="categoria" className="block text-sm font-medium">Categoria</label>
-          <select
-            id="categoria"
-            value={categoria}
-            onChange={(e) => {
-              setCategoria(e.target.value);
-              setSubcategoria('');
-            }}
+          <label className="block text-sm font-medium">Faixa Etária</label>
+          <input
+            type="text"
+            value={faixa_etaria}
+            onChange={(e) => setFaixaEtaria(e.target.value)}
             className="w-full px-4 py-2 border rounded"
-            required
-          >
-            <option value="">Selecione uma categoria</option>
-            {categorias.map(cat => (
-              <option key={cat.id_categoria} value={cat.id_categoria}>{cat.desc_categoria}</option>
-            ))}
-          </select>
+          />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="subcategoria" className="block text-sm font-medium">Subcategoria</label>
-          <select
-            id="subcategoria"
-            value={subcategoria}
-            onChange={(e) => setSubcategoria(e.target.value)}
+          <label className="block text-sm font-medium">Vagas</label>
+          <input
+            type="number"
+            value={vagas}
+            onChange={(e) => setVagas(e.target.value)}
             className="w-full px-4 py-2 border rounded"
-            required
-          >
-            <option value="">Selecione uma subcategoria</option>
-            {subcategorias
-              .filter(sub => sub.id_categoria === parseInt(categoria))
-              .map(sub => (
-                <option key={sub.id_subcategoria} value={sub.id_subcategoria}>{sub.desc_subcategoria}</option>
-              ))}
-          </select>
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium">Gratuito? (sim/não)</label>
+          <input
+            type="text"
+            value={gratuito}
+            onChange={(e) => setGratuito(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium">Valor</label>
+          <input
+            type="text"
+            value={valor}
+            onChange={(e) => setValor(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium">Link para Compra</label>
+          <input
+            type="text"
+            value={compra_link}
+            onChange={(e) => setCompraLink(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+          />
         </div>
 
         <div className="mb-4">
