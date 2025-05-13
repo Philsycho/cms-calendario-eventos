@@ -1,0 +1,25 @@
+[
+  {
+    "id": 0,
+    "titulo":"",
+    "descricao":"",
+    "descricao_curta":"",
+    "data_postagem":"",
+    "hora_postagem":"",
+    "data_evento":"",
+    "hora_evento":"",
+    "hora_ini_evento":"",
+    "hora_fim_evento":"",
+    "localizacao":"",
+    "categoria":"",
+    "sub-categoria":"",
+    "banner":"",
+    "video":"",
+    "publico":"",
+    "faixa_etaria":"",
+    "vagas":"",
+    "gratuito": 0,
+    "valor": 0.00,
+    "compra_link":""
+  }
+]

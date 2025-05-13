@@ -12,7 +12,7 @@ interface Evento {
   descricao: string;
   imagem: string;
   localizacao: string;
-  data: string;
+  data_evento: string;
   slug: string;
 }
 
@@ -38,9 +38,13 @@ export default async function PaginaEvento({ params }: Props) {
         alt={evento.titulo}
         className="w-full h-[300px] object-cover rounded-xl mb-6"
       />
-      <p className="text-lg mb-2">{evento.descricao}</p>
+      <p className="text-gray-600">📅 {evento.data_evento}</p>
       <p className="text-gray-600">📍 {evento.localizacao}</p>
-      <p className="text-gray-600">📅 {evento.data}</p>
+      <p className="text-lg mb-2">{evento.descricao}</p>
+
+      <div>
+        <p>Reembolso</p>
+      </div>
     </main>
   );
 }

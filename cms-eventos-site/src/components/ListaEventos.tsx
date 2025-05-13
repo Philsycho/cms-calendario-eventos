@@ -9,6 +9,7 @@ type Evento = {
   slug: string;
   titulo: string;
   descricao: string;
+  descricao_curta: string;
   imagem: string;
   data_evento: string;
   data_postagem: string;
@@ -54,7 +55,7 @@ export default function ListaEventos() {
             <p className="text-gray-500 text-sm">
               {new Date(evento.data_evento).toLocaleDateString()} • {evento.local}
             </p>
-            <p className="mt-2 text-gray-700">{evento.descricao}</p>
+            <p className="mt-2 text-gray-700">{evento.descricao_curta}</p>
           </div>
         </Link>
       ))}
