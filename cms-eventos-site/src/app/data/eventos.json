@@ -1,18 +1,5 @@
 [
   {
-    "id": 1,
-    "titulo": "Ferroz",
-    "slug": "ferroz-",
-    "descricao": "Festa tradicional de Agronômica.",
-    "descricao_curta": "Esse é um teste de postagem de descrição curta, como podem ver ele é bem sutil e fácil de entender a sua função e como ela dele se comportar, diante de uma postagem. Informativo e direto, esse é o obj",
-    "data_evento": "2025-06-02 00:00:00:000",
-    "data_postagem": "2025-04-22 00:00:00:000",
-    "categoria": "",
-    "sub-categoria": "",
-    "localizacao": "Pavilhão da Ferroz, Agronômica- SC",
-    "imagem": "/img/recicla-agrn.png"
-  },
-  {
     "id": 2,
     "titulo": "Feira de Negócios e Empreendedorismo",
     "slug": "feira-negocios-empreendedorismo",
