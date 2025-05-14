@@ -6,7 +6,12 @@ export default function Postar() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [descricao_curta, setDescricaoCurta] = useState('');
+  const [data_postagem, setDataPostagem] = useState(''); //Data em que o evento foi criado pelo organizador
+  const [hora_postagem, setHoraPostagem] = useState('');
   const [data_evento, setDataEvento] = useState('');
+  const [hora_evento, setHoraEvento] = useState('');
+  const [hora_ini_evento, setHoraIniEvento] = useState('');
+  const [hora_fim_evento, setHoraFimEvento] = useState('');
   const [localizacao, setLocalizacao] = useState('');
   const [categoria, setCategoria] = useState('');
   const [categorias, setCategorias] = useState<{ id_categoria: number; desc_categoria: string }[]>([]);
@@ -21,6 +26,7 @@ export default function Postar() {
   const [valor, setValor] = useState('');
   const [compra_link, setCompraLink] = useState('');
 
+  //Leitura do JSONs para integração da categorias e subcategorias
   useEffect(() => {
     fetch('/api/categoria').then(res => res.json()).then(setCategorias);
     fetch('/api/sub_categoria').then(res => res.json()).then(setSubcategorias);
@@ -31,13 +37,14 @@ export default function Postar() {
       setBanner(e.target.files[0]);
     }
   };
-
+  // Função para gerar o slug
   const gerarSlug = (titulo: string) => {
     return titulo.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   };
 
-  const formatarDataCompleta = (data: string) => {
-    const date = new Date(data);
+
+  const formatarDataCompleta = (data_postagem: string) => {
+    const date = new Date(data_postagem);
     return date.toISOString();
   };
 
@@ -57,9 +64,12 @@ export default function Postar() {
       slug,
       descricao,
       descricao_curta,
+      data_postagem,
+      hora_postagem,
+      hora_ini_evento,
+      hora_fim_evento,
       localizacao,
       data_evento: formatarDataCompleta(data_evento),
-      data_postagem,
       categoria: parseInt(categoria),
       subcategoria: parseInt(subcategoria),
       banner: banner?.name || '',
@@ -95,7 +105,19 @@ export default function Postar() {
     <div className="max-w-4xl mx-auto px-6 py-8">
       <h1 className="text-3xl font-bold mb-4">Criar Novo Evento</h1>
       <form onSubmit={handleSubmit}>
-        {/* Os campos principais como antes... */}
+
+        {/* Correção do rótulo para titulo */}
+        <div className="mb-4">
+          <label htmlFor="titulo" className="block text-sm font-medium">Título</label>
+          <textarea
+            id="titulo"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+            style={{ height: '42px' }}
+            required
+          />
+        </div>
 
         {/* Correção do rótulo para descrição curta */}
         <div className="mb-4">
@@ -105,6 +127,22 @@ export default function Postar() {
             value={descricao_curta}
             onChange={(e) => setDescricaoCurta(e.target.value)}
             className="w-full px-4 py-2 border rounded"
+            required
+            maxLength={200}
+          />
+          <p className="text-sm text-gray-500">{descricao_curta.length}/200 caracteres</p>
+        </div>
+
+
+        {/* Correção do rótulo para descrição */}
+        <div className="mb-4">
+          <label htmlFor="descricao" className="block text-sm font-medium">Descrição</label>
+          <textarea
+            id="descricao"
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+            style={{ height: '200px' }}
             required
           />
         </div>

@@ -2,6 +2,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## 📦 Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/) – Framework React full-stack
+- [React](https://reactjs.org/) – Biblioteca para interfaces declarativas
+- [TypeScript](https://www.typescriptlang.org/) – Superset de JavaScript com tipagem
+- [Tailwind CSS](https://tailwindcss.com/) – Framework CSS utilitário
+- [FormData API](https://developer.mozilla.org/en-US/docs/Web/API/FormData) – Para envio de arquivos via formulário
+
+
 First, run the development server:
 
 ```bash

@@ -15,10 +15,10 @@ export default function Navbar() {
       </nav>
       <div className="flex gap-4">
         <a href="/postar">
-          <button className="text-sm px-4 py-2 border rounded">Postar</button>
+          <button className="text-sm px-4 py-2 border rounded cursor-pointer">Postar</button>
         </a>
-        <button className="text-sm px-4 py-2 border rounded">Entrar</button>
-        <button className="text-sm px-4 py-2 bg-blue-600 text-white rounded">Registrar</button>
+        <button className="text-sm px-4 py-2 border rounded cursor-pointer">Entrar</button>
+        <button className="text-sm px-4 py-2 bg-blue-600 text-white rounded cursor-pointer">Registrar</button>
       </div>
     </header>
   );
