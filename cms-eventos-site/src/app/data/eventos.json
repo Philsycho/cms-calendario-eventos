@@ -1,15 +1,16 @@
 [
   {
     "id": 2,
-    "titulo": "Feira de Negócios e Empreendedorismo",
     "slug": "feira-negocios-empreendedorismo",
+    "titulo": "Feira de Negócios e Empreendedorismo",
+    "descricao_curta":"Essa é um tipo de comentário curto, referente ao evento, venha se divertir. Teste para de quebra de linha.",
     "descricao": "Conheça novas startups e participe de palestras incríveis.",
     "data_evento": "2027-06-02 17:00:00:000",
     "data_postagem": "2025-04-22 00:00:00:000",
     "categoria": 1,
     "sub-categoria": "",
     "localizacao": "Expo Center Norte, São Paulo - SP",
-    "imagem": "/img/pinkfloyd.webp"
+    "banner": "/img/pinkfloyd.webp"
   },
   {
     "id": 3,
@@ -21,7 +22,7 @@
     "categoria": "",
     "sub-categoria": "",
     "localizacao": "Parque Municipal, Belo Horizonte - MG",
-    "imagem": "/img/negocio.jpg"
+    "banner": "/img/negocio.jpg"
   },
   {
     "id": 6,
@@ -33,7 +34,7 @@
     "categoria": "",
     "sub-categoria": "",
     "localizacao": "Centro, Tubarão - SC",
-    "imagem": "/img/3a248962-d78d-4611-aeac-28a17077ce7d_Maquinaria-Agricola--1-.png"
+    "banner": "/img/3a248962-d78d-4611-aeac-28a17077ce7d_Maquinaria-Agricola--1-.png"
   },
   {
     "id": 7,
@@ -45,6 +46,6 @@
     "categoria": "",
     "sub-categoria": "",
     "localizacao": "Centro, Tubarão - SC",
-    "imagem": "/img/fa9ed422-ff13-45a2-83ed-7340cd3bcc58_R.png"
+    "banner": "/img/fa9ed422-ff13-45a2-83ed-7340cd3bcc58_R.png"
   }
 ]

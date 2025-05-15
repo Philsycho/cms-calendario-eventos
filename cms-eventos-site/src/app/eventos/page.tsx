@@ -9,13 +9,12 @@ type Evento = {
   id: number;
   titulo: string;
   slug: string;
-  descricao: string;
+  descricao_curta: string;
   data_evento: string;
-  data_postagem: string;
   categoria: number; // agora usamos ID numérico
   subcategoria: number; // agora usamos ID numérico
   localizacao: string;
-  imagem: string;
+  banner: string;
 };
 
 type Categoria = {
@@ -53,7 +52,7 @@ export default function PaginaEventos() {
       const matchSubcategoria = filtroSubcategoria ? evento.subcategoria === parseInt(filtroSubcategoria) : true;
       return matchTitulo && matchCategoria && matchSubcategoria;
     })
-    .sort((a, b) => new Date(b.data_postagem).getTime() - new Date(a.data_postagem).getTime()); // Ordena da mais recente para mais antiga
+    .sort((a, b) => new Date(b.data_evento).getTime() - new Date(a.data_evento).getTime()); // Ordena da mais recente para mais antiga
 
   return (
     <div className="px-6 py-4 px-[8%]">
@@ -103,20 +102,34 @@ export default function PaginaEventos() {
       {/* Eventos filtrados */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {eventosFiltrados.map(evento => (
-            <Link
+          <Link
             key={evento.id}
             href={`/eventos/${evento.slug}`}
-            className="block rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all bg-white">
-                <div key={evento.id} className="block rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all bg-white">
-                    <img src={evento.imagem} alt={evento.titulo} className="w-full h-50 object-cover rounded " />
-                    <h2 className="text-xl font-bold text-black mt-3 ml-3">{evento.titulo}</h2>
-                    <p className="text-sm text-black mt-1 ml-3">{evento.data_evento}</p>
-                    <p className="text-sm text-black mt-1 ml-3">{evento.localizacao}</p>
-                    <p className="mt-1 ml-3 mb-3 text-black">{evento.descricao}</p>
-                </div>
-            </Link>
+            className="block rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all bg-white"
+          >
+            <div className="block rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all bg-white">
+              <img
+                src={evento.banner}
+                alt={evento.titulo}
+                className="w-full h-50 object-cover rounded"
+              />
+              <h2 className="text-xl font-bold text-black mt-3 ml-3">
+                {evento.titulo}
+              </h2>
+              <p className="text-sm text-black mt-1 ml-3">
+                {evento.data_evento}
+              </p>
+              <p className="text-sm text-black mt-1 ml-3">
+                {evento.localizacao}
+              </p>
+              <p className="mt-1 ml-3 mb-3 text-black min-h-[48px]">
+                {evento.descricao_curta || ''}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
+
     </div>
   );
 }
