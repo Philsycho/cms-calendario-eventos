@@ -10,7 +10,7 @@ interface Evento {
   id: string;
   titulo: string;
   descricao: string;
-  imagem: string;
+  banner: string;
   localizacao: string;
   data_evento: string;
   slug: string;
@@ -34,7 +34,7 @@ export default async function PaginaEvento({ params }: Props) {
     <main className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">{evento.titulo}</h1>
       <img
-        src={evento.imagem}
+        src={evento.banner}
         alt={evento.titulo}
         className="w-full h-[300px] object-cover rounded-xl mb-6"
       />

@@ -7,7 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 type Evento = {
   id: string;
   titulo: string;
-  imagem: string;
+  banner: string;
   data_evento: string;
   data_postagem: string;
   slug: string;
@@ -56,7 +56,7 @@ export default function BannerCarrossel() {
               style={{ position: "relative" }}
             >
               <img
-                src={evento.imagem}
+                src={evento.banner}
                 alt={evento.titulo}
                 className="h-full w-full object-cover"
               />

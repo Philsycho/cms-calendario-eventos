@@ -120,7 +120,7 @@ export default function EditarEvento() {
           )}
           <input
             type="file"
-            id="imagem"
+            id="banner"
             onChange={handleImageChange}
             className="w-full px-4 py-2 border rounded"
           />

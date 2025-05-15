@@ -10,7 +10,7 @@ type Evento = {
   titulo: string;
   descricao: string;
   descricao_curta: string;
-  imagem: string;
+  banner: string;
   data_evento: string;
   data_postagem: string;
   local: string;
@@ -44,7 +44,7 @@ export default function ListaEventos() {
         >
           <div className="w-full h-60 relative">
             <Image
-              src={evento.imagem}
+              src={evento.banner}
               alt={evento.titulo}
               fill
               className="object-cover"
