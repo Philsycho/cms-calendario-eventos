@@ -1,12 +1,14 @@
 'use client';
-
 import { useEffect, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import { format } from 'date-fns';
 
 export default function Postar() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [descricao_curta, setDescricaoCurta] = useState('');
-  const [data_postagem, setDataPostagem] = useState(''); //Data em que o evento foi criado pelo organizador
+  const [data_postagem, setDataPostagem] = useState('');
   const [hora_postagem, setHoraPostagem] = useState('');
   const [data_evento, setDataEvento] = useState('');
   const [hora_evento, setHoraEvento] = useState('');
@@ -25,8 +27,9 @@ export default function Postar() {
   const [gratuito, setGratuito] = useState('');
   const [valor, setValor] = useState('');
   const [compra_link, setCompraLink] = useState('');
+  const [dataInicio, setDataInicio] = useState<Date | undefined>();
+  const [dataFim, setDataFim] = useState<Date | undefined>();
 
-  //Leitura do JSONs para integração da categorias e subcategorias
   useEffect(() => {
     fetch('/api/categoria').then(res => res.json()).then(setCategorias);
     fetch('/api/sub_categoria').then(res => res.json()).then(setSubcategorias);
@@ -37,14 +40,14 @@ export default function Postar() {
       setBanner(e.target.files[0]);
     }
   };
-  // Função para gerar o slug
+
   const gerarSlug = (titulo: string) => {
     return titulo.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   };
 
-
-  const formatarDataCompleta = (data_postagem: string) => {
-    const date = new Date(data_postagem);
+  const formatarDataCompleta = (data: string) => {
+    const date = new Date(data);
+    if (isNaN(date.getTime())) return "Data inválida";
     return date.toISOString();
   };
 
@@ -70,6 +73,8 @@ export default function Postar() {
       hora_fim_evento,
       localizacao,
       data_evento: formatarDataCompleta(data_evento),
+      data_inicio_evento: dataInicio ? format(dataInicio, 'yyyy-MM-dd') : '',
+      data_fim_evento: dataFim ? format(dataFim, 'yyyy-MM-dd') : '',
       categoria: parseInt(categoria),
       subcategoria: parseInt(subcategoria),
       banner: banner?.name || '',
@@ -105,8 +110,6 @@ export default function Postar() {
     <div className="max-w-4xl mx-auto px-6 py-8">
       <h1 className="text-3xl font-bold mb-4">Criar Novo Evento</h1>
       <form onSubmit={handleSubmit}>
-
-        {/* Correção do rótulo para titulo */}
         <div className="mb-4">
           <label htmlFor="titulo" className="block text-sm font-medium">Título</label>
           <textarea
@@ -119,7 +122,6 @@ export default function Postar() {
           />
         </div>
 
-        {/* Correção do rótulo para descrição curta */}
         <div className="mb-4">
           <label htmlFor="descricao_curta" className="block text-sm font-medium">Descrição Curta</label>
           <textarea
@@ -133,8 +135,6 @@ export default function Postar() {
           <p className="text-sm text-gray-500">{descricao_curta.length}/200 caracteres</p>
         </div>
 
-
-        {/* Correção do rótulo para descrição */}
         <div className="mb-4">
           <label htmlFor="descricao" className="block text-sm font-medium">Descrição</label>
           <textarea
@@ -147,7 +147,38 @@ export default function Postar() {
           />
         </div>
 
-        {/* Campos adicionais que estavam faltando */}
+        {/* Calendário com react-day-picker */}
+        <div className="flex gap-8 mb-6">
+          <div>
+            <p className="mb-1 font-medium">Dia de início do evento</p>
+            <DayPicker
+              mode="single"
+              selected={dataInicio}
+              onSelect={setDataInicio}
+            />
+            {dataInicio && (
+              <p className="text-sm text-gray-600 mt-1">
+                Selecionado: {format(dataInicio, 'dd/MM/yyyy')}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <p className="mb-1 font-medium">Dia de fim do evento</p>
+            <DayPicker
+              mode="single"
+              selected={dataFim}
+              onSelect={setDataFim}
+            />
+            {dataFim && (
+              <p className="text-sm text-gray-600 mt-1">
+                Selecionado: {format(dataFim, 'dd/MM/yyyy')}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Campos adicionais */}
         <div className="mb-4">
           <label className="block text-sm font-medium">Vídeo (URL)</label>
           <input
